@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">MyRecyclerView</string>
+    <!--Menu-->
+    <string name="menu_list">List</string>
+    <string name="menu_grid">Grid</string>
+    <string name="menu_with_cradview">with CardView</string>
+</resources>
