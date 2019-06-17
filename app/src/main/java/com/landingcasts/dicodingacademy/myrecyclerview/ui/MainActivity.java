@@ -2,12 +2,14 @@ package com.landingcasts.dicodingacademy.myrecyclerview.ui;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.landingcasts.dicodingacademy.myrecyclerview.R;
+import com.landingcasts.dicodingacademy.myrecyclerview.adapter.GridPresidentAdapter;
 import com.landingcasts.dicodingacademy.myrecyclerview.adapter.ListPresidentAdapter;
 import com.landingcasts.dicodingacademy.myrecyclerview.model.President;
 import com.landingcasts.dicodingacademy.myrecyclerview.model.PresidentData;
@@ -41,8 +43,10 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()){
             case R.id.action_list:
+                showRecyclerList();
                 break;
             case R.id.action_grid:
+                showRecyclerGrid();
                 break;
             case R.id.action_cardview:
                 break;
@@ -56,5 +60,12 @@ public class MainActivity extends AppCompatActivity {
         ListPresidentAdapter listPresidentAdapter = new ListPresidentAdapter(this);
         listPresidentAdapter.setListPresident(list);
         rvCategory.setAdapter(listPresidentAdapter);
+    }
+
+    private void showRecyclerGrid(){
+        rvCategory.setLayoutManager(new GridLayoutManager(this, 2));
+        GridPresidentAdapter gridPresidentAdapter = new GridPresidentAdapter(this);
+        gridPresidentAdapter.setListPresident(list);
+        rvCategory.setAdapter(gridPresidentAdapter);
     }
 }
