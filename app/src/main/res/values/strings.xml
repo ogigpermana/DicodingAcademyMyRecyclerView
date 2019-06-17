@@ -4,4 +4,6 @@
     <string name="menu_list">List</string>
     <string name="menu_grid">Grid</string>
     <string name="menu_with_cradview">with CardView</string>
+    <string name="favorite">Favorite</string>
+    <string name="share">Share</string>
 </resources>

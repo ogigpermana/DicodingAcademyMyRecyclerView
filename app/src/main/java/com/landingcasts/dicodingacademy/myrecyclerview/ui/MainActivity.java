@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.landingcasts.dicodingacademy.myrecyclerview.R;
+import com.landingcasts.dicodingacademy.myrecyclerview.adapter.CardViewPresidentAdapter;
 import com.landingcasts.dicodingacademy.myrecyclerview.adapter.GridPresidentAdapter;
 import com.landingcasts.dicodingacademy.myrecyclerview.adapter.ListPresidentAdapter;
 import com.landingcasts.dicodingacademy.myrecyclerview.model.President;
@@ -21,16 +22,27 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView rvCategory;
     private ArrayList<President> list = new ArrayList<>();
 
+    private void setActionBarTitle(String title){
+        getSupportActionBar().setTitle(title);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if (getSupportActionBar() != null){
+            String title = "Urutan Presiden Republik Indonesia";
+            getSupportActionBar().setTitle(title);
+        }
 
         rvCategory = findViewById(R.id.rv_category);
         rvCategory.setHasFixedSize(true);
 
         list.addAll(PresidentData.getListData());
         showRecyclerList();
+
+
     }
 
     @Override
@@ -43,12 +55,16 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()){
             case R.id.action_list:
+                setActionBarTitle("Mode List");
                 showRecyclerList();
                 break;
             case R.id.action_grid:
+                setActionBarTitle("Mode Grid");
                 showRecyclerGrid();
                 break;
             case R.id.action_cardview:
+                setActionBarTitle("Mode CardView");
+                showRecyclerCardView();
                 break;
         }
 
@@ -67,5 +83,12 @@ public class MainActivity extends AppCompatActivity {
         GridPresidentAdapter gridPresidentAdapter = new GridPresidentAdapter(this);
         gridPresidentAdapter.setListPresident(list);
         rvCategory.setAdapter(gridPresidentAdapter);
+    }
+
+    private void showRecyclerCardView(){
+        rvCategory.setLayoutManager(new LinearLayoutManager(this));
+        CardViewPresidentAdapter cardViewPresidentAdapter = new CardViewPresidentAdapter(this);
+        cardViewPresidentAdapter.setListPresident(list);
+        rvCategory.setAdapter(cardViewPresidentAdapter);
     }
 }
