@@ -16,6 +16,7 @@ import com.landingcasts.dicodingacademy.myrecyclerview.adapter.GridPresidentAdap
 import com.landingcasts.dicodingacademy.myrecyclerview.adapter.ListPresidentAdapter;
 import com.landingcasts.dicodingacademy.myrecyclerview.model.President;
 import com.landingcasts.dicodingacademy.myrecyclerview.model.PresidentData;
+import com.landingcasts.dicodingacademy.myrecyclerview.util.ItemClickSupport;
 
 import java.util.ArrayList;
 
@@ -37,10 +38,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if (getSupportActionBar() != null){
-            String title = "Urutan Presiden Republik Indonesia";
-            getSupportActionBar().setTitle(title);
-        }
+//        if (getSupportActionBar() != null){
+//            String title = "Urutan Presiden Republik Indonesia";
+//            getSupportActionBar().setTitle(title);
+//        }
 
         rvCategory = findViewById(R.id.rv_category);
         rvCategory.setHasFixedSize(true);
@@ -50,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
         list = new ArrayList<>();
         if (savedInstanceState == null){
-            setActionBarTitle("Mode List");
+            setActionBarTitle("Urutan Presiden RI");
             list.addAll(PresidentData.getListData());
             showRecyclerList();
             mode = R.id.action_list;
@@ -106,12 +107,12 @@ public class MainActivity extends AppCompatActivity {
         listPresidentAdapter.setListPresident(list);
         rvCategory.setAdapter(listPresidentAdapter);
 
-//        ItemClickSupport.addTo(rvCategory).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
-//            @Override
-//            public void onItemClicked(RecyclerView recyclerView, int position, View v) {
-//                showSelectedPresident(list.get(position));
-//            }
-//        });
+        ItemClickSupport.addTo(rvCategory).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
+            @Override
+            public void onItemClicked(RecyclerView recyclerView, int position, View v) {
+                showSelectedPresident(list.get(position));
+            }
+        });
     }
 
     private void showRecyclerGrid(){
@@ -127,12 +128,12 @@ public class MainActivity extends AppCompatActivity {
         cardViewPresidentAdapter.setListPresident(list);
         rvCategory.setAdapter(cardViewPresidentAdapter);
 
-//        ItemClickSupport.addTo(rvCategory).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
-//            @Override
-//            public void onItemClicked(RecyclerView recyclerView, int position, View v) {
-//                showSelectedPresident(list.get(position));
-//            }
-//        });
+        ItemClickSupport.addTo(rvCategory).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
+            @Override
+            public void onItemClicked(RecyclerView recyclerView, int position, View v) {
+                showSelectedPresident(list.get(position));
+            }
+        });
     }
 
     @Override
